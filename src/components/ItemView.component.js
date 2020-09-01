@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Typography, Card, Divider, Button } from 'antd';
-import { EditOutlined, CommentOutlined, CalendarOutlined, DoubleRightOutlined } from '@ant-design/icons';
+import { Typography, Card, Divider, Button, Badge } from 'antd';
+import { EditOutlined, CommentOutlined, CalendarOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import moment from 'moment'
 
 const { Title, Text } = Typography;
@@ -51,6 +51,21 @@ const AuthorDiv = styled(Text)`
     padding:0px 8px;
 `;
 
+const CategoryDiv = styled.div`
+
+    background-color:red;
+    color: white;
+    max-width:140px;
+    padding:2px 16px;
+    border-radius:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:600;
+    margin-bottom:16px;
+
+`;
+
 
 
 const formatedTime = (unixTime) => {
@@ -83,6 +98,11 @@ const ItemView = ((props) => {
         <ContainerDiv>
             <IndicatorDiv />
             <Card>
+
+                <CategoryDiv className="shadow1" >
+                    <ThunderboltOutlined style={{ color: 'white', padding: '4px 4px' }} />
+                    Top Stories
+                </CategoryDiv>
                 <Title level={3} ellipsis strong>My YC app: Dropbox - Throw away your USB </Title>
                 <BarDiv>
                     <BarItem>

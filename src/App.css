@@ -2,3 +2,8 @@
     max-width: 1140px;
     margin: 0 auto;
 }
+
+.shadow1{
+-webkit-box-shadow: 3px 1px 23px 5px rgba(133, 133, 133, 0.509); 
+box-shadow: 3px 1px 23px 5px rgba(133, 133, 133, 0.461);
+}
