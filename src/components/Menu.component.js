@@ -25,19 +25,9 @@ const AppMenu = (props) => {
 
     return (
         <MenuDiv onClick={handleClick} selectedKeys={[current]} mode="horizontal">
-            <Menu.Item key="home">
-                <Avatar shape='square' src={logo} size={40} />
-            </Menu.Item>
-            <Menu.Item key="new" icon={<ThunderboltOutlined />}>
-                New stories
-            </Menu.Item>
-            <Menu.Item key="top" icon={<FireOutlined />}>
-                Top Stories
-            </Menu.Item>
-            <Menu.Item key="best" icon={<TrophyOutlined />}>
-                Best Stories
-            </Menu.Item>
-
+            <Menu.Item key="new" icon={<ThunderboltOutlined />}>New stories</Menu.Item>
+            <Menu.Item key="top" icon={<FireOutlined />}>Top Stories</Menu.Item>
+            <Menu.Item key="best" icon={<TrophyOutlined />}>Best Stories</Menu.Item>
         </MenuDiv>
     )
 }

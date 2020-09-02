@@ -6,6 +6,29 @@ import moment from 'moment'
 
 const { Title, Text } = Typography;
 
+const getColor = () => {
+    const colors = [
+
+        '#f39c12',
+        'red',
+        'yellow',
+        'orange',
+        '#16a085',
+        '#34495e',
+
+        '#c0392b',
+        '#2ecc71',
+        '#8e44ad',
+        'magenta',
+        '#2c3e50',
+        'gold',
+        '#d35400',
+    ];
+    const randomColorIndex = Math.floor(Math.random() * 13)
+    return colors[randomColorIndex]
+}
+
+
 const ContainerDiv = styled.div`
     display:flex;
     flex-direction:row;
@@ -18,10 +41,9 @@ const ContainerDiv = styled.div`
 const IndicatorDiv = styled.div`
     align-self: stretch;
     width:3px;
-    background-color:red;
+    background-color:${() => getColor()};
     border-radius:10px;
-
-    box-shadow: 173px 16px 86px -23px rgba(227,20,100,1);
+    box-shadow: 173px 16px 86px -23px ${() => getColor()};
 `;
 
 const BarDiv = styled.div`
@@ -75,21 +97,9 @@ const formatedTime = (unixTime) => {
 }
 
 
-const colors = [
-    'pink',
-    'red',
-    'yellow',
-    'orange',
-    'cyan',
-    'green',
-    'blue',
-    'purple',
-    'geekblue',
-    'magenta',
-    'volcano',
-    'gold',
-    'lime',
-];
+
+
+
 
 
 const ItemView = ((props) => {
@@ -118,7 +128,7 @@ const ItemView = ((props) => {
                     <BarItem>
                         <CalendarOutlined style={{ color: '#a9a9a9', padding: '4px' }} />
                         <AuthorDiv strong>2020/9/1</AuthorDiv>
-                        <BarDivider />
+
                     </BarItem>
                     <BarItem style={{ flex: 1 }}>
                         <Button
