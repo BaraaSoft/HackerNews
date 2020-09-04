@@ -1,3 +1,5 @@
 export default ActionType = {
-    TopNews: "TopNews",
+    TopStories: " TopStories",
+    NewStories: "NewStories",
+    BestStories: "BestStories"
 }

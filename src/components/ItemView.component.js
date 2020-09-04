@@ -12,6 +12,7 @@ const getColor = () => {
         '#f39c12',
         'red',
         'yellow',
+
         'orange',
         '#16a085',
         '#34495e',
@@ -19,6 +20,7 @@ const getColor = () => {
         '#c0392b',
         '#2ecc71',
         '#8e44ad',
+
         'magenta',
         '#2c3e50',
         'gold',
@@ -62,7 +64,7 @@ const BarDivider = styled.div`
     width: 1px;
     height: 24px;
     background-color: #d9d9d9;
-    margin: 0px 4px; 
+    margin: 0px 4px;
 `
 
 
@@ -74,7 +76,6 @@ const AuthorDiv = styled(Text)`
 `;
 
 const CategoryDiv = styled.div`
-
     background-color:red;
     color: white;
     max-width:140px;
@@ -85,21 +86,13 @@ const CategoryDiv = styled.div`
     align-items:center;
     font-weight:600;
     margin-bottom:16px;
-
 `;
 
-
-
 const formatedTime = (unixTime) => {
-    // 1598994172
+    //1598994172
     let datetime = moment.unix()
     return datetime.calendar()
 }
-
-
-
-
-
 
 
 const ItemView = ((props) => {
@@ -108,7 +101,6 @@ const ItemView = ((props) => {
         <ContainerDiv>
             <IndicatorDiv />
             <Card>
-
                 <CategoryDiv className="shadow1" >
                     <ThunderboltOutlined style={{ color: 'white', padding: '4px 4px' }} />
                     Top Stories
@@ -128,7 +120,6 @@ const ItemView = ((props) => {
                     <BarItem>
                         <CalendarOutlined style={{ color: '#a9a9a9', padding: '4px' }} />
                         <AuthorDiv strong>2020/9/1</AuthorDiv>
-
                     </BarItem>
                     <BarItem style={{ flex: 1 }}>
                         <Button
@@ -136,8 +127,7 @@ const ItemView = ((props) => {
                             // icon={<DoubleRightOutlined />}
                             type="ghost"
                             onClick={() => this.enterLoading(1)}
-                            block
-                        >
+                            block>
                             Read More
                         </Button>
                     </BarItem>

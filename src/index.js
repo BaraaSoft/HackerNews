@@ -2,11 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+/** Redux Setup **/
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './reducers';
+import thunk from 'redux-thunk';
+
+
+const Main = (props) => (
+  <Provider store={createStore(reducers, applyMiddleware(thunk))}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>
+)
+
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Main />,
   document.getElementById('root')
 );
 
@@ -14,3 +28,4 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
