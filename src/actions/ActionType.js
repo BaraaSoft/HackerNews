@@ -1,5 +1,9 @@
 export default {
-    TopStories: " TopStories",
+    TopStoriesIds: "TopStoriesIds",
+    NewStoriesIds: "NewStoriesIds",
+    BestStoriesIds: "BestStoriesIds",
+
+    TopStories: "TopStories",
     NewStories: "NewStories",
     BestStories: "BestStories"
 }

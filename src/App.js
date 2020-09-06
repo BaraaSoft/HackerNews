@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import './App.css'
 
 import AppMenu from './components/Menu.component';
+import ListView from './components/ListView.component'
 
 const { Header, Content, Footer } = Layout;
 
@@ -18,6 +19,7 @@ function App() {
         <Content className="row">
           <ItemView />
           <ItemView />
+          <ListView />
         </Content>
       </div>
     </Fragment>

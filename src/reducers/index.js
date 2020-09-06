@@ -1,9 +1,19 @@
 import { combineReducers } from 'redux'
-import { topStories, bestStories, newStories } from './stories.reducer'
+import {
+    topStoriesIds,
+    bestStoriesIds,
+    newStoriesIds,
+    topStories,
+    newStories,
+    bestStories
+} from './stories.reducer'
 
 
 export default combineReducers({
+    topStoriesIds,
+    bestStoriesIds,
+    newStoriesIds,
     topStories,
-    bestStories,
-    newStories
+    newStories,
+    bestStories
 })
