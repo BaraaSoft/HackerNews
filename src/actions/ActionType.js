@@ -1,4 +1,4 @@
-export default ActionType = {
+export default {
     TopStories: " TopStories",
     NewStories: "NewStories",
     BestStories: "BestStories"

@@ -1,16 +1,21 @@
 
 import ActionType from './ActionType';
+import axios from '../https';
 
 
-export const fetchTopStories = () => (dispatch) => {
+
+export const fetchAllTopStories = () => async (dispatch) => {
+    const { data } = await axios.get('/topstories.json')
+
+    console.log(">> fetchTopStories:", data)
 
 }
 
-export const fetchNewStories = () => (dispatch) => {
+export const fetchAllNewStories = () => async (dispatch) => {
 
 }
 
-export const fetchBestStories = () => (dispatch) => {
+export const fetchAllBestStories = () => async (dispatch) => {
 
 }
 
