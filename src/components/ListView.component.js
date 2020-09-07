@@ -37,6 +37,7 @@ const renderStories = (stories = [], activeMenu, page) => {
 
     return stories.slice(first, last).map(story => {
         return (<ItemView
+            id={story.id}
             category={activeMenu.active}
             title={story.title}
             by={story.by}
@@ -65,7 +66,7 @@ const ListView = (props) => {
         fetchStories(1)
     }
     async function loadNewStories() {
-        await fetchAllBestStories()
+        await fetchAllNewStories()
         fetchStories(1)
     }
     async function loadBestStories() {
@@ -82,7 +83,6 @@ const ListView = (props) => {
     const onChange = (page, pageSize) => {
         fetchStories(page)
         setPage(page)
-        console.log(">>page", page)
     }
     return (
         <ContainerDiv className="row">
@@ -90,6 +90,7 @@ const ListView = (props) => {
                 {renderStories(stories, activeMenu, page)}
             </ListDiv>
             <Pagination
+                style={{ marginTop: '12px' }}
                 size="default"
                 defaultPageSize={20}
                 defaultCurrent={1}
