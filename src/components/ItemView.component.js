@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Typography, Card, Divider, Button, Badge } from 'antd';
 import { EditOutlined, CommentOutlined, CalendarOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import moment from 'moment'
+import { MenuState } from '../actions/menuState';
 
 const { Title, Text } = Typography;
 
@@ -94,6 +95,19 @@ const formatedTime = (unixTime) => {
     return datetime.calendar()
 }
 
+const formateCategory = (cat) => {
+    switch (cat) {
+        case MenuState.newStories:
+            return "New stories";
+        case MenuState.topStories:
+            return "Top stories";
+        case MenuState.bestStories:
+            return "Best stories"
+        default:
+            return ""
+    }
+}
+
 
 const ItemView = ({ category, title, by, url, time, descendants, id }) => {
 
@@ -103,7 +117,7 @@ const ItemView = ({ category, title, by, url, time, descendants, id }) => {
             <Card style={{ width: '720px' }} >
                 <CategoryDiv className="shadow1">
                     <ThunderboltOutlined style={{ color: 'white', padding: '4px 4px' }} />
-                    {category}
+                    {formateCategory(category)}
                 </CategoryDiv>
                 <Title level={3} ellipsis strong>{title}</Title>
                 <BarDiv>
@@ -126,7 +140,6 @@ const ItemView = ({ category, title, by, url, time, descendants, id }) => {
                     <BarItem style={{ width: '200px' }}>
                         <Button
                             type="primary"
-                            // icon={<DoubleRightOutlined />}
                             type="ghost"
                             onClick={() => window.open(url, "_blank")}
                             block>

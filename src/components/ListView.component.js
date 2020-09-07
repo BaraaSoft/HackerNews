@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Typography, Card, Divider, Button, Pagination } from 'antd';
+import { Typography, Card, Divider, Button, Pagination, Skeleton } from 'antd';
 import { EditOutlined, CommentOutlined, CalendarOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import ItemView from './ItemView.component';
@@ -27,6 +27,8 @@ const ListDiv = styled.div`
     display:flex;
     flex-direction:column;
     overflow:scroll;
+    min-height:180px;
+    min-width:100%;
 `;
 
 
@@ -34,10 +36,15 @@ const renderStories = (stories = [], activeMenu, page) => {
 
     const first = Math.abs(page - 1) * 20
     const last = first + 20
+    if (stories.length < 1) {
+        return [...Array(20).keys()].map(x => (
+            <Skeleton paragraph={{ rows: 4 }} />
+        ))
+    }
 
-    return stories.slice(first, last).map(story => {
+    return stories.slice(first, last).map((story, index) => {
         return (<ItemView
-            id={story.id}
+            id={story.id || index}
             category={activeMenu.active}
             title={story.title}
             by={story.by}
@@ -84,6 +91,7 @@ const ListView = (props) => {
         fetchStories(page)
         setPage(page)
     }
+
     return (
         <ContainerDiv className="row">
             <ListDiv>

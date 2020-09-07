@@ -4,7 +4,7 @@ import Axios from "axios";
 
 const instance = Axios.create({
     baseURL: 'https://hacker-news.firebaseio.com/v0',
-    timeout: 3000,
+    timeout: 10000,
 });
 
 
