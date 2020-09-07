@@ -31,6 +31,7 @@ export const bestStoriesIds = (state = [], action) => {
 }
 
 export const newStories = (state = [], action) => {
+
     switch (action.type) {
         case ActionType.NewStories:
             return _.uniqBy([...state, action.payload], "id")
@@ -40,6 +41,8 @@ export const newStories = (state = [], action) => {
 }
 
 export const topStories = (state = [], action) => {
+
+
     switch (action.type) {
         case ActionType.TopStories:
             return _.uniqBy([...state, action.payload], "id")
@@ -49,9 +52,10 @@ export const topStories = (state = [], action) => {
 }
 
 export const bestStories = (state = [], action) => {
+
     switch (action.type) {
         case ActionType.BestStories:
-            return _.uniqBy([...state, ...action.payload], "id")
+            return _.uniqBy([...state, action.payload], "id")
         default:
             return state
     }

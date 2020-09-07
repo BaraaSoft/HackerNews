@@ -38,6 +38,7 @@ const ContainerDiv = styled.div`
     justify-content:stretch;
     align-items:stretch;
     margin: 8px 8px;
+    
 `;
 
 const IndicatorDiv = styled.div`
@@ -95,38 +96,38 @@ const formatedTime = (unixTime) => {
 }
 
 
-const ItemView = ((props) => {
+const ItemView = ({ category, title, by, url, time, descendants }) => {
 
     return (
         <ContainerDiv>
             <IndicatorDiv />
-            <Card>
+            <Card style={{ width: '720px' }} >
                 <CategoryDiv className="shadow1">
                     <ThunderboltOutlined style={{ color: 'white', padding: '4px 4px' }} />
-                    Top Stories
+                    {category}
                 </CategoryDiv>
-                <Title level={3} ellipsis strong>My YC app: Dropbox - Throw away your USB </Title>
+                <Title level={3} ellipsis strong>{title}</Title>
                 <BarDiv>
                     <BarItem>
                         <EditOutlined style={{ color: '#a9a9a9', padding: '4px' }} />
-                        <AuthorDiv strong ellipsis>By Baraa</AuthorDiv>
+                        <AuthorDiv strong ellipsis>By {by}</AuthorDiv>
                         <BarDivider />
                     </BarItem>
                     <BarItem>
                         <CommentOutlined style={{ color: '#a9a9a9', padding: '4px' }} />
-                        <AuthorDiv strong>25</AuthorDiv>
+                        <AuthorDiv strong>{descendants}</AuthorDiv>
                         <BarDivider />
                     </BarItem>
                     <BarItem>
                         <CalendarOutlined style={{ color: '#a9a9a9', padding: '4px' }} />
-                        <AuthorDiv strong>2020/9/1</AuthorDiv>
+                        <AuthorDiv strong>{moment(time).calendar()}</AuthorDiv>
                     </BarItem>
                     <BarItem style={{ flex: 1 }}>
                         <Button
                             type="primary"
                             // icon={<DoubleRightOutlined />}
                             type="ghost"
-                            onClick={() => this.enterLoading(1)}
+                            onClick={() => window.open(url, "_blank")}
                             block>
                             Read More
                         </Button>
@@ -135,7 +136,7 @@ const ItemView = ((props) => {
             </Card>
         </ContainerDiv>
     )
-})
+}
 
 
 export default ItemView

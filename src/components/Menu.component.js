@@ -15,10 +15,7 @@ import { setActiveMenu } from '../actions/menu.action';
 const MenuDiv = styled(Menu)`
     margin-top:24;
     margin-bottom:24;
-`
-
-
-
+`;
 
 const AppMenu = (props) => {
     const { setActiveMenu, activeMenu } = props

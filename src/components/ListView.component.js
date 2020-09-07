@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Typography, Card, Divider, Button, Pagination } from 'antd';
 import { EditOutlined, CommentOutlined, CalendarOutlined, ThunderboltOutlined } from '@ant-design/icons';
@@ -9,7 +9,9 @@ import {
     fetchAllTopStories,
     fetchAllNewStories,
     fetchTopStories,
+    fetchStories
 } from '../actions/stories.action';
+import { MenuState } from '../actions/menuState';
 
 
 const ContainerDiv = styled.div`
@@ -23,60 +25,107 @@ const ContainerDiv = styled.div`
 const ListDiv = styled.div`
     flex:1;
     display:flex;
+    flex-direction:column;
+    overflow:scroll;
 `;
+
+
+const renderStories = (stories = [], activeMenu, page) => {
+
+    const first = Math.abs(page - 1) * 20
+    const last = first + 20
+
+    return stories.slice(first, last).map(story => {
+        return (<ItemView
+            category={activeMenu.active}
+            title={story.title}
+            by={story.by}
+            url={story.url}
+            time={story.time}
+            descendants={story.descendants} />)
+    })
+}
 
 
 
 const ListView = (props) => {
+    const [page, setPage] = useState(1)
     const {
         fetchAllBestStories,
         fetchAllTopStories,
         fetchAllNewStories,
-        fetchTopStories,
-        topStoriesIds,
-        topStories
+        fetchStories,
+        stories,
+        storiesIds,
+        activeMenu
     } = props
 
-    async function getTopStories() {
+    async function loadTopStories() {
         await fetchAllTopStories()
-        fetchTopStories(1)
+        fetchStories(1)
     }
-    async function getNewStories() {
+    async function loadNewStories() {
         await fetchAllBestStories()
-        fetchTopStories(1)
+        fetchStories(1)
     }
-    async function getBestStories() {
+    async function loadBestStories() {
         await fetchAllBestStories()
-        fetchTopStories(1)
+        fetchStories(1)
     }
 
     useEffect(() => {
-        getTopStories();
+        loadNewStories();
+        loadTopStories();
+        loadBestStories();
     }, [])
 
     const onChange = (page, pageSize) => {
-        fetchTopStories(page)
+        fetchStories(page)
+        setPage(page)
         console.log(">>page", page)
     }
-
-
     return (
         <ContainerDiv className="row">
             <ListDiv>
-
+                {renderStories(stories, activeMenu, page)}
             </ListDiv>
             <Pagination
                 size="default"
                 defaultPageSize={20}
                 defaultCurrent={1}
-                total={topStoriesIds.length}
+                total={storiesIds.length}
                 onChange={onChange} />
         </ContainerDiv>
     );
 }
 
-const mapStateToProps = ({ topStories, topStoriesIds }) => {
-    return { topStories, topStoriesIds }
+const mapStateToProps = ({
+    topStories, newStories, bestStories,
+    topStoriesIds, bestStoriesIds, newStoriesIds,
+    activeMenu }) => {
+
+    let stories, storiesIds;
+
+    switch (activeMenu.active) {
+        case MenuState.newStories:
+            stories = newStories
+            storiesIds = newStoriesIds
+            break;
+        case MenuState.topStories:
+            stories = topStories
+            storiesIds = topStoriesIds
+            break;
+        case MenuState.bestStories:
+            stories = bestStories
+            storiesIds = bestStoriesIds
+            break;
+
+        default:
+            stories = newStories
+            storiesIds = newStoriesIds
+            break;
+    }
+    return { stories, storiesIds, activeMenu }
 }
 
 export default connect(mapStateToProps, {
@@ -84,4 +133,5 @@ export default connect(mapStateToProps, {
     fetchAllTopStories,
     fetchAllNewStories,
     fetchTopStories,
+    fetchStories
 })(ListView)
