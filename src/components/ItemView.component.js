@@ -38,7 +38,7 @@ const ContainerDiv = styled.div`
     justify-content:stretch;
     align-items:stretch;
     margin: 8px 8px;
-    
+    min-height:160px;
 `;
 
 const IndicatorDiv = styled.div`
@@ -66,7 +66,7 @@ const BarDivider = styled.div`
     height: 24px;
     background-color: #d9d9d9;
     margin: 0px 4px;
-`
+`;
 
 
 
@@ -90,16 +90,15 @@ const CategoryDiv = styled.div`
 `;
 
 const formatedTime = (unixTime) => {
-    //1598994172
-    let datetime = moment.unix()
+    let datetime = moment.unix(unixTime)
     return datetime.calendar()
 }
 
 
-const ItemView = ({ category, title, by, url, time, descendants }) => {
+const ItemView = ({ category, title, by, url, time, descendants, id }) => {
 
     return (
-        <ContainerDiv>
+        <ContainerDiv key={id}>
             <IndicatorDiv />
             <Card style={{ width: '720px' }} >
                 <CategoryDiv className="shadow1">
@@ -120,9 +119,11 @@ const ItemView = ({ category, title, by, url, time, descendants }) => {
                     </BarItem>
                     <BarItem>
                         <CalendarOutlined style={{ color: '#a9a9a9', padding: '4px' }} />
-                        <AuthorDiv strong>{moment(time).calendar()}</AuthorDiv>
+                        <AuthorDiv strong>{formatedTime(time)}</AuthorDiv>
                     </BarItem>
-                    <BarItem style={{ flex: 1 }}>
+                    <BarItem style={{ flex: 1 }} >
+                    </BarItem>
+                    <BarItem style={{ width: '200px' }}>
                         <Button
                             type="primary"
                             // icon={<DoubleRightOutlined />}
