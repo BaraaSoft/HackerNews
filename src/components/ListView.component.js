@@ -26,9 +26,9 @@ const ListDiv = styled.div`
     flex:1;
     display:flex;
     flex-direction:column;
-    overflow:scroll;
+    overflow-y:scroll;
     min-height:180px;
-    min-width:100%;
+    
 `;
 
 

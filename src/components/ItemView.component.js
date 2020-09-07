@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Typography, Card, Divider, Button, Badge } from 'antd';
-import { EditOutlined, CommentOutlined, CalendarOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { EditOutlined, CommentOutlined, CalendarOutlined, ThunderboltOutlined, FireOutlined, TrophyOutlined } from '@ant-design/icons';
 import moment from 'moment'
 import { MenuState } from '../actions/menuState';
 
@@ -40,6 +40,7 @@ const ContainerDiv = styled.div`
     align-items:stretch;
     margin: 8px 8px;
     min-height:160px;
+    min-width:1140px;
 `;
 
 const IndicatorDiv = styled.div`
@@ -78,16 +79,16 @@ const AuthorDiv = styled(Text)`
 `;
 
 const CategoryDiv = styled.div`
-    background-color:red;
+    background-color:${(({ catColor }) => catColor)};
     color: white;
-    max-width:140px;
-    padding:2px 16px;
-    border-radius:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:600;
-    margin-bottom:16px;
+    max-width: 140px;
+    padding: 2px 16px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 16px;
 `;
 
 const formatedTime = (unixTime) => {
@@ -108,15 +109,40 @@ const formateCategory = (cat) => {
     }
 }
 
+const formateCategoryIcon = (cat) => {
+    switch (cat) {
+        case MenuState.newStories:
+            return (<ThunderboltOutlined style={{ color: 'white', padding: '4px 4px' }} />)
+        case MenuState.topStories:
+            return (<FireOutlined style={{ color: 'white', padding: '4px 4px' }} />)
+        case MenuState.bestStories:
+            return (<TrophyOutlined style={{ color: 'white', padding: '4px 4px' }} />)
+        default:
+            return ""
+    }
+}
+
+const formateCategoryColor = (cat) => {
+    switch (cat) {
+        case MenuState.newStories:
+            return '#F0002A'
+        case MenuState.topStories:
+            return '#ff9500'
+        case MenuState.bestStories:
+            return '#5856d6'
+        default:
+            return ""
+    }
+}
 
 const ItemView = ({ category, title, by, url, time, descendants, id }) => {
 
     return (
         <ContainerDiv key={id}>
             <IndicatorDiv />
-            <Card style={{ width: '720px' }} >
-                <CategoryDiv className="shadow1">
-                    <ThunderboltOutlined style={{ color: 'white', padding: '4px 4px' }} />
+            <Card style={{ width: '1140px' }} >
+                <CategoryDiv className="shadow1" catColor={formateCategoryColor(category)}>
+                    {formateCategoryIcon(category)}
                     {formateCategory(category)}
                 </CategoryDiv>
                 <Title level={3} ellipsis strong>{title}</Title>
