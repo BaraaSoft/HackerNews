@@ -6,6 +6,7 @@ import logo from '../assets/baraabytes.png'
 import { MenuState } from '../actions/menuState';
 import { connect } from 'react-redux';
 import { setActiveMenu } from '../actions/menu.action';
+import { fetchStories } from '../actions/stories.action';
 
 
 
@@ -18,13 +19,14 @@ const MenuDiv = styled(Menu)`
 `;
 
 const AppMenu = (props) => {
-    const { setActiveMenu, activeMenu } = props
+    const { setActiveMenu, activeMenu, fetchStories } = props
     const [current, setCurrent] = useState(activeMenu.active)
 
     const handleClick = e => {
         console.log('click ', e);
         setCurrent(e.key);
         setActiveMenu(e.key)
+        fetchStories(1)
     };
 
     return (
@@ -40,4 +42,4 @@ const mapStateToProps = ({ activeMenu }) => {
     return { activeMenu }
 }
 
-export default connect(mapStateToProps, { setActiveMenu })(AppMenu)
+export default connect(mapStateToProps, { setActiveMenu, fetchStories })(AppMenu)
