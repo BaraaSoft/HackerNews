@@ -29,7 +29,6 @@ export const fetchTopStories = (pageNum) => async (dispatch, getState) => {
     arrIds.forEach(id => {
         dispatch(fetchSingleStory(id, ActionType.TopStories))
     })
-
 }
 
 

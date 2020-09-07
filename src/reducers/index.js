@@ -5,7 +5,8 @@ import {
     newStoriesIds,
     topStories,
     newStories,
-    bestStories
+    bestStories,
+    activeMenu
 } from './stories.reducer'
 
 
@@ -15,5 +16,6 @@ export default combineReducers({
     newStoriesIds,
     topStories,
     newStories,
-    bestStories
+    bestStories,
+    activeMenu,
 })

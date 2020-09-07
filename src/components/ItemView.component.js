@@ -101,7 +101,7 @@ const ItemView = ((props) => {
         <ContainerDiv>
             <IndicatorDiv />
             <Card>
-                <CategoryDiv className="shadow1" >
+                <CategoryDiv className="shadow1">
                     <ThunderboltOutlined style={{ color: 'white', padding: '4px 4px' }} />
                     Top Stories
                 </CategoryDiv>
@@ -131,7 +131,6 @@ const ItemView = ((props) => {
                             Read More
                         </Button>
                     </BarItem>
-
                 </BarDiv>
             </Card>
         </ContainerDiv>

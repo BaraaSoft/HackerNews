@@ -3,6 +3,12 @@ import styled from 'styled-components';
 import { Layout, Menu, Breadcrumb, PageHeader, Avatar } from 'antd';
 import { ThunderboltOutlined, FireOutlined, TrophyOutlined } from '@ant-design/icons';
 import logo from '../assets/baraabytes.png'
+import { MenuState } from '../actions/menuState';
+import { connect } from 'react-redux';
+import { setActiveMenu } from '../actions/menu.action';
+
+
+
 
 
 
@@ -15,21 +21,26 @@ const MenuDiv = styled(Menu)`
 
 
 const AppMenu = (props) => {
-
-    const [current, setCurrent] = useState('new')
+    const { setActiveMenu, activeMenu } = props
+    const [current, setCurrent] = useState(activeMenu.active)
 
     const handleClick = e => {
         console.log('click ', e);
         setCurrent(e.key);
+        setActiveMenu(e.key)
     };
 
     return (
         <MenuDiv onClick={handleClick} selectedKeys={[current]} mode="horizontal">
-            <Menu.Item key="new" icon={<ThunderboltOutlined />}>New stories</Menu.Item>
-            <Menu.Item key="top" icon={<FireOutlined />}>Top Stories</Menu.Item>
-            <Menu.Item key="best" icon={<TrophyOutlined />}>Best Stories</Menu.Item>
+            <Menu.Item key={MenuState.newStories} icon={<ThunderboltOutlined />}>New stories</Menu.Item>
+            <Menu.Item key={MenuState.topStories} icon={<FireOutlined />}>Top Stories</Menu.Item>
+            <Menu.Item key={MenuState.bestStories} icon={<TrophyOutlined />}>Best Stories</Menu.Item>
         </MenuDiv>
     )
 }
 
-export default AppMenu
+const mapStateToProps = ({ activeMenu }) => {
+    return { activeMenu }
+}
+
+export default connect(mapStateToProps, { setActiveMenu })(AppMenu)

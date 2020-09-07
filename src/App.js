@@ -16,9 +16,7 @@ function App() {
     <Fragment>
       <AppMenu />
       <div>
-        <Content className="row">
-          <ItemView />
-          <ItemView />
+        <Content style={{ height: '90vh' }} className="row">
           <ListView />
         </Content>
       </div>
